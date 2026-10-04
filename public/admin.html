@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | NoticeHub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📢 NoticeHub Admin
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Student Board
+            </a>
+
+            <a href="#" id="logoutBtn">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+        <!-- HEADER -->
+
+        <section class="hero">
+
+            <div>
+
+                <span class="badge">
+                    ADMIN DASHBOARD
+                </span>
+
+                <h1>
+                    Manage College Notices
+                </h1>
+
+                <p>
+                    Create, update, pin and remove notices
+                    from the digital notice board.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADMIN INFORMATION -->
+
+        <section class="admin-info">
+
+            <div>
+
+                <span>Logged in as</span>
+
+                <strong id="adminName">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                id="addNoticeBtn"
+            >
+                + Add New Notice
+            </button>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <h3 id="totalNotices">
+                    0
+                </h3>
+
+                <p>
+                    Total Notices
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3 id="importantNotices">
+                    0
+                </h3>
+
+                <p>
+                    Important
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3 id="pinnedNotices">
+                    0
+                </h3>
+
+                <p>
+                    Pinned
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FILTER -->
+
+        <section class="filters">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search notices..."
+            >
+
+
+            <select id="categoryFilter">
+
+                <option value="">
+                    All Categories
+                </option>
+
+                <option value="Academic">
+                    Academic
+                </option>
+
+                <option value="Placement">
+                    Placement
+                </option>
+
+                <option value="Event">
+                    Event
+                </option>
+
+                <option value="Sports">
+                    Sports
+                </option>
+
+                <option value="Club">
+                    Club
+                </option>
+
+                <option value="Holiday">
+                    Holiday
+                </option>
+
+            </select>
+
+
+            <select id="priorityFilter">
+
+                <option value="">
+                    All Priorities
+                </option>
+
+                <option value="Normal">
+                    Normal
+                </option>
+
+                <option value="Important">
+                    Important
+                </option>
+
+                <option value="Urgent">
+                    Urgent
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- NOTICE LIST -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <h2>
+                    📋 Manage Notices
+                </h2>
+
+            </div>
+
+
+            <div
+                id="noticeContainer"
+                class="notice-grid"
+            >
+
+                <p>
+                    Loading notices...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ADD / EDIT MODAL -->
+
+    <div
+        id="noticeModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Add Notice
+                </h2>
+
+                <button
+                    id="closeModal"
+                    class="close-btn"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="noticeForm">
+
+                <input
+                    type="hidden"
+                    id="noticeId"
+                >
+
+
+                <label>
+                    Notice Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Enter notice title"
+                    required
+                >
+
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    rows="5"
+                    placeholder="Enter notice details"
+                    required
+                ></textarea>
+
+
+                <div class="form-row">
+
+                    <div>
+
+                        <label>
+                            Category
+                        </label>
+
+                        <select
+                            id="category"
+                            required
+                        >
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Academic">
+                                Academic
+                            </option>
+
+                            <option value="Placement">
+                                Placement
+                            </option>
+
+                            <option value="Event">
+                                Event
+                            </option>
+
+                            <option value="Sports">
+                                Sports
+                            </option>
+
+                            <option value="Club">
+                                Club
+                            </option>
+
+                            <option value="Holiday">
+                                Holiday
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Priority
+                        </label>
+
+                        <select id="priority">
+
+                            <option value="Normal">
+                                Normal
+                            </option>
+
+                            <option value="Important">
+                                Important
+                            </option>
+
+                            <option value="Urgent">
+                                Urgent
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div>
+
+                        <label>
+                            Posted By
+                        </label>
+
+                        <input
+                            type="text"
+                            id="postedBy"
+                            placeholder="Admin / Department"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Expiry Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="expiryDate"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <label class="checkbox-label">
+
+                    <input
+                        type="checkbox"
+                        id="isPinned"
+                    >
+
+                    📌 Pin this notice
+
+                </label>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelBtn"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Save Notice
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+    </div>
+
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

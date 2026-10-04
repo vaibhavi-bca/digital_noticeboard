@@ -1,0 +1,571 @@
+Build a modern, polished, responsive frontend for a college "Digital Notice Board" web application.
+
+PROJECT CONTEXT:
+This is a Cloud Computing college project. The final application will use:
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js + Express.js
+- Database: Azure SQL Database
+- Deployment: Azure App Service
+
+For now, ONLY build the frontend. Do not create a real backend or database. Use mock/sample data and structure the frontend so REST API integration can easily be added later.
+
+APPLICATION NAME:
+"CampusConnect – Digital Notice Board"
+
+DESIGN GOAL:
+Create a professional college notice-board dashboard that looks like a real production application, not a basic student project.
+
+Use a clean modern UI with:
+- Professional blue/indigo primary color
+- White/light backgrounds
+- Subtle gradients
+- Rounded cards
+- Soft shadows
+- Good spacing
+- Modern typography
+- Smooth hover and transition animations
+- Responsive design for desktop, tablet and mobile
+- Accessible contrast and readable text
+
+Do NOT overuse animations, glassmorphism, gradients or excessive colors. Keep the interface professional.
+
+==================================================
+1. PUBLIC NOTICE BOARD / HOME PAGE
+==================================================
+
+Create a main dashboard with:
+
+TOP NAVBAR:
+- CampusConnect logo/icon
+- "Digital Notice Board"
+- Navigation:
+  - Home
+  - Notices
+  - Categories
+- Search icon/input
+- Dark/light mode toggle
+- Admin Login button
+
+HERO SECTION:
+Display:
+"Stay Updated. Stay Connected."
+Subtitle:
+"All important college announcements in one place."
+
+Include:
+- Search bar: "Search notices..."
+- "View All Notices" button
+- Attractive but minimal academic/college visual element
+
+STATISTICS:
+Create four small statistic cards:
+- Total Notices
+- Active Notices
+- Urgent Notices
+- Pinned Notices
+
+Example:
+42 Total Notices
+28 Active
+5 Urgent
+6 Pinned
+
+NOTICE SECTION:
+Heading:
+"Latest Notices"
+
+Add category filter buttons/dropdown:
+- All
+- Examination
+- Events
+- Placements
+- Sports
+- Clubs
+- General
+
+Add priority filter:
+- All
+- Normal
+- Important
+- Urgent
+
+Add sorting:
+- Newest
+- Oldest
+- Expiring Soon
+
+NOTICE CARDS:
+Each card should display:
+- Category
+- Priority badge
+- Notice title
+- Short description
+- Posted date
+- Expiry date
+- Posted by
+- Pinned indicator if applicable
+- "View Details" button
+
+Example notices:
+
+1.
+Title: "Internal Examination Schedule"
+Category: Examination
+Priority: Important
+Description: "Internal examinations will begin from 15 October 2026. Students are requested to check the detailed schedule."
+Posted By: Examination Cell
+Posted: 03 Oct 2026
+Expires: 20 Oct 2026
+Pinned: Yes
+
+2.
+Title: "TCS Campus Placement Drive"
+Category: Placements
+Priority: Urgent
+Description: "Registration for the upcoming TCS campus placement drive is now open."
+Posted By: Placement Cell
+
+3.
+Title: "Annual Sports Meet 2026"
+Category: Sports
+Priority: Normal
+Description: "Registrations are open for students interested in participating in the annual sports meet."
+Posted By: Sports Department
+
+4.
+Title: "Coding Competition"
+Category: Events
+Priority: Normal
+Description: "Join the inter-college coding competition and showcase your programming skills."
+Posted By: Computer Club
+
+Use realistic sample notices.
+
+==================================================
+2. NOTICE DETAILS PAGE / MODAL
+==================================================
+
+When the user clicks "View Details", open a beautiful modal or dedicated details view.
+
+Display:
+- Full title
+- Category
+- Priority
+- Full description
+- Posted date
+- Expiry date
+- Posted by
+- Pinned status
+
+Buttons:
+- Close
+- Print Notice
+
+If possible, include a "Share" button using the browser share API, with a fallback for unsupported browsers.
+
+==================================================
+3. ADMIN LOGIN PAGE
+==================================================
+
+Create a professional admin login page.
+
+Include:
+- CampusConnect logo
+- "Admin Portal"
+- Username/email input
+- Password input
+- Show/hide password
+- Remember me
+- Login button
+- Back to Notice Board
+
+This is frontend-only for now.
+
+When login is clicked, simulate successful login and redirect to the admin dashboard. Clearly structure the code so real authentication can later replace the mock login.
+
+==================================================
+4. ADMIN DASHBOARD
+==================================================
+
+Create a separate admin dashboard.
+
+Sidebar:
+- Dashboard
+- All Notices
+- Add Notice
+- Categories
+- Archived Notices
+- Logout
+
+Dashboard main area:
+
+Header:
+"Welcome, Administrator"
+
+Statistics:
+- Total Notices
+- Active Notices
+- Expired Notices
+- Urgent Notices
+- Pinned Notices
+
+Recent Notices table:
+
+Columns:
+- Title
+- Category
+- Priority
+- Posted Date
+- Expiry Date
+- Status
+- Actions
+
+Actions:
+- View
+- Edit
+- Delete
+
+Use confirmation modal before deleting.
+
+==================================================
+5. ADD NOTICE PAGE
+==================================================
+
+Create a professional form.
+
+Fields:
+- Notice Title
+- Category
+- Description
+- Priority
+- Posted By
+- Notice Date
+- Expiry Date
+- Pin Notice checkbox
+
+Buttons:
+- Publish Notice
+- Save Draft
+- Cancel
+
+Add frontend validation:
+- Title required
+- Description required
+- Category required
+- Priority required
+- Expiry date cannot be before notice date
+
+Show attractive validation/error/success messages.
+
+For now, save data to localStorage so the frontend feels functional.
+
+IMPORTANT:
+Create a clean service/API layer such as:
+
+services/noticeService.js
+
+The UI should call functions like:
+
+getNotices()
+getNoticeById(id)
+createNotice(notice)
+updateNotice(id, notice)
+deleteNotice(id)
+
+Initially these functions can use localStorage/mock data.
+
+Later they will be replaced with calls such as:
+
+GET /api/notices
+GET /api/notices/:id
+POST /api/notices
+PUT /api/notices/:id
+DELETE /api/notices/:id
+
+Do NOT tightly couple UI components directly to mock data.
+
+==================================================
+6. EDIT NOTICE
+==================================================
+
+Reuse the Add Notice form for editing.
+
+When clicking Edit:
+- Load existing notice
+- Populate form
+- Allow changes
+- Update localStorage
+- Show "Notice updated successfully"
+
+==================================================
+7. DELETE NOTICE
+==================================================
+
+When Delete is clicked:
+
+Show confirmation modal:
+
+"Are you sure you want to delete this notice?"
+
+Buttons:
+Cancel
+Delete Notice
+
+After deletion:
+- Remove from list
+- Update statistics
+- Show success notification
+
+==================================================
+8. SEARCH AND FILTER
+==================================================
+
+Search should work dynamically.
+
+Search across:
+- Title
+- Description
+- Category
+- Posted By
+
+Filters:
+- Category
+- Priority
+- Active/Expired
+- Pinned
+
+Allow filters to work together.
+
+Example:
+Search "exam"
++ Category "Examination"
++ Priority "Important"
+
+should show only matching notices.
+
+==================================================
+9. NOTICE EXPIRY / ARCHIVE
+==================================================
+
+Use JavaScript to determine whether a notice is expired based on expiry date.
+
+Display status:
+- Active
+- Expiring Soon
+- Expired
+
+Expired notices should appear in the Archived Notices section.
+
+Do not actually delete expired notices.
+
+==================================================
+10. DARK MODE
+==================================================
+
+Add a light/dark mode toggle.
+
+Requirements:
+- Persist preference using localStorage
+- Smooth transition
+- Ensure all text remains readable
+- Ensure cards, forms, tables and modals work properly in dark mode
+
+==================================================
+11. RESPONSIVE DESIGN
+==================================================
+
+Desktop:
+- Sidebar dashboard
+- Multi-column notice cards
+
+Tablet:
+- Responsive grid
+
+Mobile:
+- Hamburger menu
+- Single-column notice cards
+- Mobile-friendly forms
+- Horizontally scrollable tables where necessary
+- Large touch-friendly buttons
+
+Test the layout at:
+- 1440px
+- 1024px
+- 768px
+- 390px
+
+==================================================
+12. UI COMPONENTS
+==================================================
+
+Create reusable components for:
+- Navbar
+- Sidebar
+- NoticeCard
+- NoticeBadge
+- SearchBar
+- FilterBar
+- StatisticsCard
+- Modal
+- Toast notification
+- Form fields
+- Empty state
+- Loading state
+
+Include:
+- Loading spinner
+- Empty state when no notices match
+- Error state
+- Success toast
+- Delete confirmation modal
+
+==================================================
+13. SAMPLE DATA
+==================================================
+
+Provide at least 8 realistic sample notices covering:
+- Examination
+- Placement
+- Events
+- Sports
+- Clubs
+- General
+- Holiday
+
+Include different priorities and expiry dates.
+
+==================================================
+14. VISUAL STYLE
+==================================================
+
+The design should feel like a modern university administration portal.
+
+Use:
+- Professional typography
+- Consistent spacing
+- Clean cards
+- Subtle shadows
+- Rounded corners
+- Modern icons
+- Clear hierarchy
+
+Suggested visual hierarchy:
+
+Primary:
+Deep blue/indigo
+
+Secondary:
+Light blue
+
+Success:
+Green
+
+Warning:
+Amber
+
+Urgent:
+Red
+
+Avoid making the entire page colorful. Use colors mainly for status and priority indicators.
+
+==================================================
+15. ACCESSIBILITY
+==================================================
+
+Include:
+- Semantic HTML
+- Proper labels for inputs
+- Keyboard-accessible buttons
+- Visible focus states
+- ARIA labels where appropriate
+- Sufficient color contrast
+- Alt text for meaningful images/icons
+
+==================================================
+16. CODE STRUCTURE
+==================================================
+
+Keep the project clean and modular.
+
+Suggested structure:
+
+/public
+  /assets
+  /icons
+
+/src
+  /components
+    Navbar
+    Sidebar
+    NoticeCard
+    Modal
+    Toast
+    StatisticsCard
+
+  /pages
+    Home
+    NoticeDetails
+    AdminLogin
+    AdminDashboard
+    AddNotice
+    EditNotice
+    ArchivedNotices
+
+  /services
+    noticeService
+
+  /data
+    mockNotices
+
+  /utils
+    validation
+    dateUtils
+
+  styles
+
+Make the code easy for another developer to connect to a Node.js + Express REST API later.
+
+==================================================
+17. IMPORTANT BACKEND INTEGRATION PREPARATION
+==================================================
+
+Do NOT implement Azure SQL, Node.js, Express, or authentication yet.
+
+But structure the frontend for future integration.
+
+Create a single API/service abstraction so that mock localStorage data can later be replaced by:
+
+GET    /api/notices
+GET    /api/notices/:id
+POST   /api/notices
+PUT    /api/notices/:id
+DELETE /api/notices/:id
+
+Do not put fake Azure credentials or database connection strings anywhere in frontend code.
+
+==================================================
+18. FINAL REQUIREMENTS
+==================================================
+
+The final frontend should be:
+- Fully responsive
+- Interactive
+- Functional using mock/localStorage data
+- Visually polished
+- Easy to connect to an Express backend
+- Easy to demonstrate in a college presentation
+- Professional enough to look like a real college cloud application
+
+Include realistic empty states, loading states, validation, toast notifications and confirmation dialogs.
+
+Do not use lorem ipsum.
+
+Do not create unnecessary pages.
+
+Prioritize usability and clean design over excessive visual effects.
+
+At the end, provide:
+1. Complete folder structure
+2. All required frontend files
+3. Instructions to run locally
+4. Explanation of where REST API integration should be connected later
